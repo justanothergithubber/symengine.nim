@@ -8,7 +8,7 @@ type
     data: basic
   SymEngineSymbol* = object
     ## This is used so that we can get compile-time errors in cases SymEngine would raise run-time errors.
-    exprField: SymEngineExpr
+    exprField: SymEngineExprDivByZeroError
   SymEngineMatrix* = object
     ## DenseMatrix from SymEngine
     data: ptr CDenseMatrix
@@ -86,7 +86,7 @@ region generalStuff:
       case excep_code
       of SYMENGINE_NO_EXCEPTION: discard
       of SYMENGINE_RUNTIME_ERROR: raise newException(LibraryError , "SymEngine Runtime Error")
-      of SYMENGINE_DIV_BY_ZERO: raise newException(DivByZeroError, "SymEngine DivByZero Error")
+      of SYMENGINE_DIV_BY_ZERO: raise newException(DivByZeroDefect, "SymEngine DivByZero Defect")
       of SYMENGINE_NOT_IMPLEMENTED: raise newException(LibraryError, "SymEngine NotImplemented Error")
       of SYMENGINE_DOMAIN_ERROR: raise newException(LibraryError, "SymEngine Domain Error")
       of SYMENGINE_PARSE_ERROR: raise newException(LibraryError, "SymEngine Parse Error")
