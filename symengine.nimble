@@ -11,4 +11,4 @@ srcDir        = "src"
 # Dependencies
 
 requires "nim >= 1.2.4"
-requires "nimterop >= 0.6.8"
+requires "https://github.com/justanothergithubber/nimterop"
